@@ -15,5 +15,7 @@ router.post(
   validateRequest(UserValidation.createUserValidationSchema),
   UserControllers.userRegister
 );
+
 router.get('/', UserControllers.getAllUsers);
+
 router.get('/:id', UserControllers.getSingleUser);
