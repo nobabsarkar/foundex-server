@@ -25,7 +25,6 @@ const createItemIntoDB = async (payload: TItem, images: TImageFiles) => {
 const getAllItemsFromDB = async (query: Record<string, unknown>) => {
   query = (await SearchItemByUserQueryMaker(query)) || query;
 
-  // Date range search
   query = (await SearchItemByDateRangeQueryMaker(query)) || query;
 
   const itemQuery = new QueryBuilder(
