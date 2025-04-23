@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 import meiliClient from '../../utils/meilisearch';
 
+// get all items
 const getAllItems = async (limit: number, searchTerm?: string) => {
   const index = meiliClient?.index('items');
 
