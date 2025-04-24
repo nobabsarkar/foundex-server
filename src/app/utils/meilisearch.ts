@@ -6,7 +6,7 @@ import config from '../config';
 import { noImage } from '../modules/Item/item.constant';
 import { TItem } from '../modules/Item/item.interface';
 
-const meiliClient = new MeiliSearch({
+export const meiliClient = new MeiliSearch({
   host: config.meilisearch_host as string,
   apiKey: config.meilisearch_master_key,
 });

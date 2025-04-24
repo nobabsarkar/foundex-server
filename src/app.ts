@@ -7,6 +7,7 @@ import globalErrorHandler from './app/middlewares/globalErrorHandler';
 import routes from './app/routes';
 import cookieParser from 'cookie-parser';
 import notFound from './app/middlewares/notFound';
+import meiliClient from './app/utils/meilisearch';
 
 const app: Application = express();
 
@@ -18,6 +19,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.use('/api/v1', routes);
+
+// this is only for development
+// do not uncomment this if you are not sure what you are doing
+// meiliClient.index('items').deleteAllDocuments();
 
 //Testing
 app.get('/', (req: Request, res: Response, next: NextFunction) => {
