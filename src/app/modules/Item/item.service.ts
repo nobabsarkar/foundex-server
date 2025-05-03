@@ -11,6 +11,7 @@ import {
   SearchItemByDateRangeQueryMaker,
   SearchItemByUserQueryMaker,
 } from './item.utils';
+import { ItemCategory } from '../ItemCategory/itemCategory.model';
 
 const createItemIntoDB = async (payload: TItem, images: TImageFiles) => {
   const { itemImages } = images;
@@ -41,8 +42,6 @@ const createItemIntoDB = async (payload: TItem, images: TImageFiles) => {
 
 //   return result;
 // };
-
-import { ItemCategory } from '../ItemCategory/itemCategory.model';
 
 const getAllItemsFromDB = async (query: Record<string, unknown>) => {
   if (query.category === '') {
