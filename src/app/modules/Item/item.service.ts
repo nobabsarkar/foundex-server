@@ -22,9 +22,43 @@ const createItemIntoDB = async (payload: TItem, images: TImageFiles) => {
   return result;
 };
 
-const getAllItemsFromDB = async (query: Record<string, unknown>) => {
-  query = (await SearchItemByUserQueryMaker(query)) || query;
+// const getAllItemsFromDB = async (query: Record<string, unknown>) => {
+//   query = (await SearchItemByUserQueryMaker(query)) || query;
 
+//   query = (await SearchItemByDateRangeQueryMaker(query)) || query;
+
+//   const itemQuery = new QueryBuilder(
+//     Item.find().populate('user').populate('category'),
+//     query
+//   )
+//     .filter()
+//     .search(ItemsSearchableFields)
+//     .sort()
+//     // .paginate()
+//     .fields();
+
+//   const result = await itemQuery.modelQuery;
+
+//   return result;
+// };
+
+import { ItemCategory } from '../ItemCategory/itemCategory.model';
+
+const getAllItemsFromDB = async (query: Record<string, unknown>) => {
+  if (query.category === '') {
+    delete query.category;
+  }
+
+  if (query.category && typeof query.category === 'string') {
+    const categoryDoc = await ItemCategory.findOne({ name: query.category });
+    if (categoryDoc) {
+      query.category = categoryDoc._id;
+    } else {
+      delete query.category;
+    }
+  }
+
+  query = (await SearchItemByUserQueryMaker(query)) || query;
   query = (await SearchItemByDateRangeQueryMaker(query)) || query;
 
   const itemQuery = new QueryBuilder(
@@ -34,11 +68,9 @@ const getAllItemsFromDB = async (query: Record<string, unknown>) => {
     .filter()
     .search(ItemsSearchableFields)
     .sort()
-    // .paginate()
     .fields();
 
   const result = await itemQuery.modelQuery;
-
   return result;
 };
 
