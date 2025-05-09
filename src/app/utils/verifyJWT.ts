@@ -19,6 +19,7 @@ export const createToken = (
     mobileNumber?: string;
     role: keyof typeof USER_ROLE;
     status: keyof typeof USER_STATUS;
+    profilePhoto?: string;
   },
   secret: string,
   expiresIn: string
