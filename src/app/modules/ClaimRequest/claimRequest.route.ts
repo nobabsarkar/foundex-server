@@ -7,6 +7,8 @@ import validateRequest from '../../middlewares/validateRequest';
 
 const router = express.Router();
 
+// user routes
+
 router.get(
   '/received-claim-request',
   auth(USER_ROLE.USER),
@@ -35,7 +37,9 @@ router.post(
 router.put(
   '/:id',
   auth(USER_ROLE.USER),
-  validateRequest(ClaimRequestValidation.updateClaimRequestStatusWithFeedbackSchema),
+  validateRequest(
+    ClaimRequestValidation.updateClaimRequestStatusWithFeedbackSchema
+  ),
   ClaimRequestControllers.updateStatusWithFeedback
 );
 
