@@ -11,8 +11,8 @@ export const meiliClient = new MeiliSearch({
   apiKey: config.meilisearch_master_key,
 });
 
-console.log(config.meilisearch_host);
-console.log(config.meilisearch_master_key);
+// console.log(config.meilisearch_host);
+// console.log(config.meilisearch_master_key);
 
 export async function addDocumentToIndex(
   result: Document<unknown, object, TItem> & TItem & { _id: Types.ObjectId },
